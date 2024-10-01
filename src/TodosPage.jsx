@@ -2,9 +2,13 @@ import { TodosNew } from "./TodosNew";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { TodosIndex } from "./TodosIndex";
+import { Modal } from "./Modal";
+import { TodosShow } from "./TodosShow";
 
 export function TodosPage() {
   const [todos, setTodos] = useState([]);
+  const [isTodosShowVisible, setIsTodosShowVisible] = useState(false);
+   const [currentTodo, setCurrentTodo] = useState({});
 
   const handleIndex = () => {
     console.log("handleIndex");
@@ -22,11 +26,25 @@ export function TodosPage() {
     });
   };
 
+     const handleShow = (todo) => {
+         console.log("handleShow", todo);
+         setIsTodosShowVisible(true);
+         setCurrentTodo(todo);
+       };
+    
+       const handleClose = () => {
+         console.log("handleClose");
+         setIsTodosShowVisible(false);
+       };
+
   useEffect(handleIndex, []);
   return (
     <main>
       <TodosNew onCreate={handleCreate} />
-      <TodosIndex todos={todos} />
+      <TodosIndex todos={todos} onShow={handleShow} />
+      <Modal show={isTodosShowVisible} onClose={handleClose}>
+      <TodosShow photo={currentTodo} />
+       </Modal>
     </main>
   );
 }
