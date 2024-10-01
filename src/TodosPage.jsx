@@ -49,6 +49,15 @@ export function TodosPage() {
     });
   };
 
+     const handleDestroy = (id) => {
+         console.log("handleDestroy", id);
+         axios.delete(`http://localhost:3000/todos/${id}.json`).then(() => {
+           setTodos(todos.filter((todo) => todo.id !== id));
+           handleClose();
+         });
+       };
+    
+
   const handleClose = () => {
     console.log("handleClose");
     setIsTodosShowVisible(false);
@@ -60,7 +69,7 @@ export function TodosPage() {
       <TodosNew onCreate={handleCreate} />
       <TodosIndex todos={todos} onShow={handleShow} />
       <Modal show={isTodosShowVisible} onClose={handleClose}>
-        <TodosShow todo={currentTodo} onUpdate={handleUpdate} />
+        <TodosShow todo={currentTodo} onUpdate={handleUpdate} onDestroy={handleDestroy} />
       </Modal>
     </main>
   );
