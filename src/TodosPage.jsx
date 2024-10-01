@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { TodosIndex } from "./TodosIndex";
 
-export function TasksPage() {
+export function TodosPage() {
   const [todos, setTodos] = useState([]);
 
    const handleIndex = () => {
