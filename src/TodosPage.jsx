@@ -8,7 +8,7 @@ import { TodosShow } from "./TodosShow";
 export function TodosPage() {
   const [todos, setTodos] = useState([]);
   const [isTodosShowVisible, setIsTodosShowVisible] = useState(false);
-   const [currentTodo, setCurrentTodo] = useState({});
+  const [currentTodo, setCurrentTodo] = useState({});
 
   const handleIndex = () => {
     console.log("handleIndex");
@@ -26,16 +26,33 @@ export function TodosPage() {
     });
   };
 
-     const handleShow = (todo) => {
-         console.log("handleShow", todo);
-         setIsTodosShowVisible(true);
-         setCurrentTodo(todo);
-       };
-    
-       const handleClose = () => {
-         console.log("handleClose");
-         setIsTodosShowVisible(false);
-       };
+  const handleShow = (todo) => {
+    console.log("handleShow", todo);
+    setIsTodosShowVisible(true);
+    setCurrentTodo(todo);
+  };
+
+  const handleUpdate = (id, params, successCallback) => {
+    console.log("handleUpdate", params);
+    axios.patch(`http://localhost:3000/todos/${id}.json`, params).then((response) => {
+      setTodos(
+        todos.map((todo) => {
+          if (todo.id === response.data.id) {
+            return response.data;
+          } else {
+            return todo;
+          }
+        })
+      );
+      successCallback();
+      handleClose();
+    });
+  };
+
+  const handleClose = () => {
+    console.log("handleClose");
+    setIsTodosShowVisible(false);
+  };
 
   useEffect(handleIndex, []);
   return (
@@ -43,8 +60,8 @@ export function TodosPage() {
       <TodosNew onCreate={handleCreate} />
       <TodosIndex todos={todos} onShow={handleShow} />
       <Modal show={isTodosShowVisible} onClose={handleClose}>
-      <TodosShow photo={currentTodo} />
-       </Modal>
+        <TodosShow todo={currentTodo} onUpdate={handleUpdate} />
+      </Modal>
     </main>
   );
 }
