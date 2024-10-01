@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { TodosIndex } from "./TodosIndex";
 import { Modal } from "./Modal";
 import { TodosShow } from "./TodosShow";
+import { LogoutLink } from "./LogoutLink";
 
 export function TodosPage() {
   const [todos, setTodos] = useState([]);
@@ -49,14 +50,13 @@ export function TodosPage() {
     });
   };
 
-     const handleDestroy = (id) => {
-         console.log("handleDestroy", id);
-         axios.delete(`http://localhost:3000/todos/${id}.json`).then(() => {
-           setTodos(todos.filter((todo) => todo.id !== id));
-           handleClose();
-         });
-       };
-    
+  const handleDestroy = (id) => {
+    console.log("handleDestroy", id);
+    axios.delete(`http://localhost:3000/todos/${id}.json`).then(() => {
+      setTodos(todos.filter((todo) => todo.id !== id));
+      handleClose();
+    });
+  };
 
   const handleClose = () => {
     console.log("handleClose");
@@ -66,6 +66,7 @@ export function TodosPage() {
   useEffect(handleIndex, []);
   return (
     <main>
+      <LogoutLink />
       <TodosNew onCreate={handleCreate} />
       <TodosIndex todos={todos} onShow={handleShow} />
       <Modal show={isTodosShowVisible} onClose={handleClose}>
