@@ -1,4 +1,4 @@
-export function TodosShow({ todo, onUpdate }) {
+export function TodosShow({ todo, onUpdate, onDestroy }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
@@ -27,6 +27,7 @@ export function TodosShow({ todo, onUpdate }) {
         </div>
         <button type="submit">Update</button>
       </form>
+      <button onClick={() => onDestroy(todo.id)}>Destroy</button>
     </div>
   );
 }
