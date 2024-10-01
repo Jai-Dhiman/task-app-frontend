@@ -1,4 +1,4 @@
-export function TasksNew({ onCreate }) {
+export function TodosNew({ onCreate }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
@@ -7,7 +7,7 @@ export function TasksNew({ onCreate }) {
 
   return (
     <div>
-      <h1>New Task</h1>
+      <h1>New Todo</h1>
       <form onSubmit={handleSubmit}>
         <div>
           Title: <input name="title" type="text" />
