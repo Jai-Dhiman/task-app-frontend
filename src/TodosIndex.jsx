@@ -1,4 +1,5 @@
- export function TodosIndex({ todos }) {
+ export function TodosIndex({ todos, onShow }) {
+
     return (
       <div>
         <h1>All todos</h1>
@@ -8,6 +9,7 @@
            <img src={todo.url} />
            <p>Width: {todo.width}</p>
            <p>Height: {todo.height}</p>
+           <button onClick={() => onShow(todo)}>More info</button>
          </div>
        ))}
       </div>
