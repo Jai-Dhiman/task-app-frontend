@@ -1,4 +1,4 @@
-export function PhotosPage() {
+export function TasksPage() {
   return (
     <main>
       <h1>Welcome to React!</h1>
