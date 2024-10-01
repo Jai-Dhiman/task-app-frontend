@@ -1,4 +1,4 @@
-export function PhotosNew({ onCreate }) {
+export function TasksNew({ onCreate }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
@@ -7,19 +7,19 @@ export function PhotosNew({ onCreate }) {
 
   return (
     <div>
-      <h1>New Photo</h1>
+      <h1>New Task</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          Name: <input name="name" type="text" />
+          Title: <input name="title" type="text" />
         </div>
         <div>
-          Url: <input name="url" type="text" />
+          Description: <input name="description" type="text" />
         </div>
         <div>
-          Width: <input name="width" type="text" />
+          Deadline: <input name="deadline" type="text" />
         </div>
         <div>
-          Height: <input name="height" type="text" />
+          Completed: <input name="completed" type="text" />
         </div>
         <button type="submit">Create</button>
       </form>
