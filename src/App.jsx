@@ -1,12 +1,12 @@
 import { Header } from "./Header";
-import { TasksPage } from "./TasksPage";
+import { TodosPage } from "./TodosPage";
 import { Footer } from "./Footer";
 
 function App() {
   return (
     <div>
       <Header />
-      <TasksPage />
+      <TodosPage />
       <Footer />
     </div>
   );
