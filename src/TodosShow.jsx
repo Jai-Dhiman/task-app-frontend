@@ -14,7 +14,7 @@ export function TodosShow({ todo, onUpdate, onDestroy }) {
       <p>Update Todo:</p>
       <form onSubmit={handleSubmit}>
         <div>
-          Name: <input defaultValue={todo.name} name="name" type="text" />
+          Title: <input defaultValue={todo.title} name="title" type="text" />
         </div>
         <div>
           description: <input defaultValue={todo.description} name="description" type="text" />
